@@ -1,0 +1,23 @@
+{
+  "name": "google-webfonts-downloader",
+  "version": "1.0.0",
+  "description": "downloads all fonts from fonts.google.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanielRuf/google-webfonts-downloader.git"
+  },
+  "homepage": "https://github.com/DanielRuf/google-webfonts-downloader",
+  "bugs": {
+    "url": "https://github.com/DanielRuf/google-webfonts-downloader/issues"
+  },
+  "keywords": [
+    "fonts",
+    "fontfacekit"
+  ],
+  "author": "Daniel Ruf <kontakt@daniel-ruf.de>",
+  "license": "ISC"
+}
