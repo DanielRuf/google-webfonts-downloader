@@ -4,15 +4,9 @@ const fs = require('fs')
 const pkg = require('./package.json')
 const API_ENDPOINT = 'https://google-webfonts-helper.herokuapp.com/api/fonts'
 
-console.log(pkg.name.split('-').map(item => capitalizeFirstLetter(item)).join('') + " " + pkg.version)
+console.log(pkg.name + " " + pkg.version)
 
 getData()
-
-// capitalizeFirstLetter by https://stackoverflow.com/users/48492/steve-harrison
-// @link https://stackoverflow.com/a/1026087/753676
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-}
 
 function getData(){
   https.get(API_ENDPOINT, (resp) => {

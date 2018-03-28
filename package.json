@@ -1,6 +1,6 @@
 {
   "name": "google-webfonts-downloader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "downloads all fonts from fonts.google.com",
   "main": "index.js",
   "scripts": {
