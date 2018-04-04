@@ -4,7 +4,7 @@ const fs = require('fs')
 const pkg = require('./package.json')
 const API_ENDPOINT = 'https://google-webfonts-helper.herokuapp.com/api/fonts'
 
-console.log(pkg.name + " " + pkg.version)
+console.log(pkg.name + ' ' + pkg.version)
 
 getData()
 
