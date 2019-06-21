@@ -4,7 +4,7 @@
   "description": "downloads all fonts from fonts.google.com",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/cli.test.js"
   },
   "bin": {
     "google-webfonts-downloader": "./bin/google-webfonts-downloader.js"
