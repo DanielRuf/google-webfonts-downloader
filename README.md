@@ -4,4 +4,9 @@
 
 ## Installation
 
-`npm i -g google-webfonts-downloader`
+`npm i -g danielruf/google-webfonts-downloader`  
+`yarn global danielruf/google-webfonts-downloader`
+
+## Usage
+
+`google-webfonts-downloader`
