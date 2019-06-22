@@ -6,6 +6,7 @@ const API_ENDPOINT = 'https://google-webfonts-helper.herokuapp.com/api/fonts'
 
 console.log(pkg.name + ' ' + pkg.version)
 
+var stream;
 getData()
 
 function getData(){
@@ -30,12 +31,12 @@ function getData(){
 
 async function processFonts(fonts){
   const fontfacekits_count = fonts.length
-  for(i = 0; i < fontfacekits_count; i++) {
+  for(let i = 0; i < fontfacekits_count; i++) {
     const fontfacekit = fonts[i]
     const fontfacekits_count_current = i + 1
     const subsets_count = fontfacekit.subsets.length
 
-    for(j = 0; j < subsets_count; j++) {
+    for(let j = 0; j < subsets_count; j++) {
       const subset_current = j + 1
       const subset_name = fontfacekit.subsets[j]
       await downloadFontfacekit(fontfacekit.id, fontfacekits_count_current, fontfacekits_count, subset_current, subsets_count, subset_name)
@@ -49,12 +50,12 @@ function downloadFontfacekit(fontname, fontfacekits_count_current, fontfacekits_
   return new Promise((resolve, reject) => {
     https.get(API_ENDPOINT + '/' + fontname + '?download=zip&subsets=' + subset_name, (resp) => {
 
-      let data = ''
       let cur = 0
 
       const len = parseInt(resp.headers['content-length'], 10)
       const fontfacekit_filename = fontname+'-' + subset_name + '-fontfacekit.zip'
       const file = fs.createWriteStream('./' + fontfacekit_filename)
+      stream = file
 
       resp.on('data', (chunk) => {
         cur += chunk.length
@@ -65,6 +66,8 @@ function downloadFontfacekit(fontname, fontfacekits_count_current, fontfacekits_
       })
 
       resp.on('end', () => {
+        stream = null
+        file.close()
         resolve()
       })
 
@@ -75,3 +78,18 @@ function downloadFontfacekit(fontname, fontfacekits_count_current, fontfacekits_
     })
   })
 }
+
+function tearDown() {
+  if(stream && !stream.closed) {
+    stream.close()
+  }
+  process.exit(0)
+}
+
+process.on('SIGINT', function(){
+  tearDown()
+})
+
+process.on('SIGTERM', function(){
+  tearDown()
+})
